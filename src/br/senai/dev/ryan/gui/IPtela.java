@@ -1,5 +1,6 @@
 package br.senai.dev.ryan.gui;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,6 +24,9 @@ public class IPtela {
 	private JTextField txtOctate4;
 	private JTextField txtOctate5;
 	private JButton btnMostrarDetalhes;
+	private JButton btnSair;
+	
+	private Font font = new Font("Arial", Font.BOLD, 26);
 
 	public void criarTela() {
 
@@ -35,7 +39,8 @@ public class IPtela {
 
 		JLabel lblIP = new JLabel();
 		lblIP.setText("Endereço IP");
-		lblIP.setBounds(223, 10, 200, 50);
+		lblIP.setFont(font);
+		lblIP.setBounds(185, 10, 200, 50);
 		tela.getContentPane().add(lblIP);
 
 		JTextField txtOctate1 = new JTextField();
@@ -85,30 +90,48 @@ public class IPtela {
 
 		JButton btnMostrarDetalhes = new JButton();
 		btnMostrarDetalhes.setText("Mostrar Detalhes do IP");
-		btnMostrarDetalhes.setBounds(160, 150, 200, 40);
+		btnMostrarDetalhes.setBounds(50, 150, 200, 40);
 		tela.getContentPane().add(btnMostrarDetalhes);
+		
+		JButton btnSair = new JButton();
+		btnSair.setText("Sair");
+		btnSair.setBounds(270, 150, 200, 40);
+		tela.getContentPane().add(btnSair);
 
 		btnMostrarDetalhes.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				try {  //Monta o IP digitado 
-					String ipCompleto = txtOctate1.getText() + "." +
-						 txtOctate2.getText() + "." + txtOctate3.getText() + "." +
-						 txtOctate4.getText() + "/" + txtOctate5.getText();
-					 EnderecoIP endereco = new EnderecoIP(ipCompleto);
-					  String detalhes = "Classe: " + endereco.getClasse() + "\n"
-					 + "Máscara Decimal: " + endereco.getMascaraDecimal() + "\n" + "Máscara Binária: " + endereco.getMascaraBinaria() + "\n" + "Total de IPs: " +
-					 endereco.getTotalIPs();
+				try { // Monta o IP digitado
+					String ipCompleto = txtOctate1.getText() + "." + txtOctate2.getText() + "." + txtOctate3.getText()
+							+ "." + txtOctate4.getText() + "/" + txtOctate5.getText();
+					EnderecoIP endereco = new EnderecoIP(ipCompleto);
+					String detalhes = "Classe: " + endereco.getClasse() + "\n" + "Máscara Decimal: "
+							+ endereco.getMascaraDecimal() + "\n" + "Máscara Binária: " + endereco.getMascaraBinaria()
+							+ "\n" + "Total de IPs: " + endereco.getTotalIPs();
 					// Mostra os dados em uma caixa de diálogo
-					 JOptionPane.showMessageDialog(null,
-					 detalhes, "Detalhes do IP", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, detalhes, "Detalhes do IP", JOptionPane.INFORMATION_MESSAGE);
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, "Erro: entrada inválida.", "Erro", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
 
+		btnSair.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int resposta = JOptionPane.showConfirmDialog(tela, "Confirmar a sáida do sistema?", "Sair do Sistema?",
+						JOptionPane.YES_NO_OPTION);
+
+				System.out.println(resposta);
+				if (resposta == 0) {
+					System.exit(0);
+				}
+			}
+		});
+		
+		
 		tela.setVisible(true);
 	}
 

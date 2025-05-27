@@ -31,13 +31,13 @@ public class EnderecoIP {
 	}
 
 	public String getMascaraBinaria() {
-		int mascara = 0xFFFFFFFF << (30 - cidr);
+		int mascara = 0xFFFFFFFF << (32 - cidr);
 		return String.format("%8s.%8s.%8s.%8s", Integer.toBinaryString(mascara >>> 24 & 0xFF),
 				Integer.toBinaryString(mascara >>> 16 & 0xFF), Integer.toBinaryString(mascara >>> 8 & 0xFF),
 				Integer.toBinaryString(mascara & 0xFF)).replace(' ', '0');
 	}
 
 	public int getTotalIPs() {
-		return (int) Math.pow(2, 30 - cidr);
+		return (int) Math.pow(2, 32 - cidr);
 	}
 }
