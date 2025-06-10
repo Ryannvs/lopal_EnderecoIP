@@ -1,9 +1,11 @@
 package br.senai.dev.ryan.gui;
 
+import java.awt.Desktop.Action;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -97,7 +99,8 @@ public class IPtela {
 		btnSair.setText("Sair");
 		btnSair.setBounds(270, 150, 200, 40);
 		tela.getContentPane().add(btnSair);
-
+		
+	
 		btnMostrarDetalhes.addActionListener(new ActionListener() {
 
 			@Override

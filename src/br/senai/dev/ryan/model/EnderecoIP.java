@@ -38,6 +38,6 @@ public class EnderecoIP {
 	}
 
 	public int getTotalIPs() {
-		return (int) Math.pow(2, 32 - cidr);
+		return (int) Math.pow(2, 32 - cidr)- 2;
 	}
 }
